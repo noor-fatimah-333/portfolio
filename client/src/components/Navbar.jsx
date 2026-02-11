@@ -54,21 +54,22 @@ const Navbar = () => {
   }
 
   return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ 
-        y: 0, 
-        opacity: 1,
-        backdropFilter: isScrolled ? 'blur(20px)' : 'blur(10px)',
-        backgroundColor: isScrolled 
-          ? 'rgba(15, 23, 42, 0.8)' 
-          : 'rgba(255, 255, 255, 0.05)',
-      }}
-      transition={{ duration: 0.5 }}
-      className={`glass-nav fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-5xl mx-auto transition-all duration-300 ${
-        isScrolled ? 'shadow-2xl shadow-primary/10' : ''
-      }`}
-    >
+    <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ 
+          y: 0, 
+          opacity: 1,
+          backdropFilter: isScrolled ? 'blur(20px)' : 'blur(10px)',
+          backgroundColor: isScrolled 
+            ? 'rgba(15, 23, 42, 0.8)' 
+            : 'rgba(255, 255, 255, 0.05)',
+        }}
+        transition={{ duration: 0.5 }}
+        className={`glass-nav w-full max-w-5xl pointer-events-auto transition-all duration-300 ${
+          isScrolled ? 'shadow-2xl shadow-primary/10' : ''
+        }`}
+      >
       <div className="flex items-center justify-between px-6 py-3">
         <motion.div
           whileHover={{ scale: 1.05 }}
@@ -155,7 +156,7 @@ const Navbar = () => {
                       handleSmoothScroll(e, item.path)
                       setIsOpen(false)
                     }}
-                    className={`block px-6 py-3 text-sm font-medium transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded ${
+                    className={`block px-6 py-3 text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg ${
                       isActive
                         ? 'text-primary bg-primary/10'
                         : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
@@ -170,7 +171,8 @@ const Navbar = () => {
           </motion.nav>
         )}
       </AnimatePresence>
-    </motion.nav>
+      </motion.nav>
+    </div>
   )
 }
 

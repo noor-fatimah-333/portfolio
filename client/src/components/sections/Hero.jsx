@@ -51,7 +51,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 pb-32 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 pb-32 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Content */}
