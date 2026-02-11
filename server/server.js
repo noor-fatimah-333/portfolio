@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import connectDB from './config/database.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 import healthRoutes from './routes/healthRoutes.js'
+import contactRoutes from './routes/contactRoutes.js'
 
 // Load environment variables
 dotenv.config()
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }))
 
 // Routes
 app.use('/api/health', healthRoutes)
+app.use('/api/contact', contactRoutes)
 
 // Error handling middleware (must be last)
 app.use(notFound)

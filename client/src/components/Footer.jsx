@@ -1,15 +1,36 @@
 import { motion } from 'framer-motion'
 import { Github, Linkedin, Mail, Code } from 'lucide-react'
+import useMagnetic from '../hooks/useMagnetic'
+import personalInfo from '../config/personalInfo'
+
+const SocialIconWithMagnetic = ({ Icon, href, label }) => {
+  const magnetic = useMagnetic(0.2, 80)
+  return (
+    <motion.a
+      ref={magnetic.ref}
+      style={magnetic.style}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-text-secondary hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background rounded p-1"
+      whileHover={{ scale: 1.2 }}
+      whileTap={{ scale: 0.9 }}
+      aria-label={label}
+    >
+      <Icon className="w-5 h-5" />
+    </motion.a>
+  )
+}
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:contact@example.com', label: 'Email' },
-    { icon: Code, href: 'https://codepen.io', label: 'CodePen' },
-  ]
+    { icon: Github, href: personalInfo.social.github, label: 'GitHub' },
+    { icon: Linkedin, href: personalInfo.social.linkedin, label: 'LinkedIn' },
+    { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' },
+    ...(personalInfo.social.codepen ? [{ icon: Code, href: personalInfo.social.codepen, label: 'CodePen' }] : []),
+  ].filter(Boolean)
 
   return (
     <motion.footer
@@ -23,7 +44,7 @@ const Footer = () => {
           <div className="flex items-center gap-2">
             <Code className="w-5 h-5 text-primary" />
             <p className="text-text-secondary text-sm">
-              © {currentYear} Portfolio. Built with React & Express
+              © {currentYear} {personalInfo.name}. Built with React & Express
             </p>
           </div>
           
@@ -31,18 +52,12 @@ const Footer = () => {
             {socialLinks.map((link, index) => {
               const Icon = link.icon
               return (
-                <motion.a
+                <SocialIconWithMagnetic
                   key={index}
+                  Icon={Icon}
                   href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-text-secondary hover:text-primary transition-colors"
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label={link.label}
-                >
-                  <Icon className="w-5 h-5" />
-                </motion.a>
+                  label={link.label}
+                />
               )
             })}
           </div>

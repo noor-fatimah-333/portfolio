@@ -8,7 +8,6 @@ const About = lazy(() => import('../components/sections/About'))
 const TechStack = lazy(() => import('../components/sections/TechStack'))
 const Experience = lazy(() => import('../components/sections/Experience'))
 const Services = lazy(() => import('../components/sections/Services'))
-const Testimonials = lazy(() => import('../components/sections/Testimonials'))
 const Contact = lazy(() => import('../components/sections/Contact'))
 
 const LoadingFallback = () => (
@@ -46,11 +45,6 @@ const Home = () => {
       {/* Services Section */}
       <Suspense fallback={<LoadingFallback />}>
         <Services />
-      </Suspense>
-
-      {/* Testimonials Section */}
-      <Suspense fallback={<LoadingFallback />}>
-        <Testimonials />
       </Suspense>
 
       {/* Contact Section */}

@@ -3,13 +3,26 @@ import { Mail, Github, Linkedin, Calendar, MessageSquare } from 'lucide-react'
 import Section from '../ui/Section'
 import ContactForm from '../ui/ContactForm'
 import GlassCard from '../ui/GlassCard'
+import useMagnetic from '../../hooks/useMagnetic'
+import personalInfo from '../../config/personalInfo'
 
 const Contact = () => {
+  const getSocialDisplayText = (url, type) => {
+    if (!url) return ''
+    try {
+      const urlObj = new URL(url)
+      if (type === 'email') return personalInfo.email
+      return urlObj.hostname + urlObj.pathname
+    } catch {
+      return url.replace(/^https?:\/\//, '').replace(/^mailto:/, '')
+    }
+  }
+
   const socialLinks = [
-    { icon: Mail, href: 'mailto:contact@example.com', label: 'Email', text: 'contact@example.com' },
-    { icon: Github, href: 'https://github.com', label: 'GitHub', text: 'github.com/username' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn', text: 'linkedin.com/in/username' },
-  ]
+    { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email', text: personalInfo.email },
+    { icon: Github, href: personalInfo.social.github, label: 'GitHub', text: getSocialDisplayText(personalInfo.social.github, 'github') },
+    { icon: Linkedin, href: personalInfo.social.linkedin, label: 'LinkedIn', text: getSocialDisplayText(personalInfo.social.linkedin, 'linkedin') },
+  ].filter(link => link.href && link.href !== 'mailto:' && link.href !== 'https://')
 
   return (
     <Section
@@ -100,26 +113,35 @@ const Contact = () => {
           </motion.div>
 
           {/* Email Icon Row */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex items-center justify-center gap-4 pt-4"
-          >
-            <motion.a
-              href="mailto:contact@example.com"
-              className="flex items-center gap-2 px-6 py-3 glass-button"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Mail className="w-5 h-5" />
-              <span className="font-semibold">Quick Email</span>
-            </motion.a>
-          </motion.div>
+          <EmailButtonWithMagnetic />
         </div>
       </div>
     </Section>
+  )
+}
+
+const EmailButtonWithMagnetic = () => {
+  const magnetic = useMagnetic(0.25, 120)
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.4 }}
+      className="flex items-center justify-center gap-4 pt-4"
+    >
+      <motion.a
+        ref={magnetic.ref}
+        style={magnetic.style}
+        href={`mailto:${personalInfo.email}`}
+        className="flex items-center gap-2 px-6 py-3 glass-button focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <Mail className="w-5 h-5" />
+        <span className="font-semibold">Quick Email</span>
+      </motion.a>
+    </motion.div>
   )
 }
 

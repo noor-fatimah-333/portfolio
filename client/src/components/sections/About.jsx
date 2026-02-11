@@ -3,14 +3,13 @@ import { CheckCircle2, Code2, Zap, Layers, Users } from 'lucide-react'
 import Section from '../ui/Section'
 import GlassCard from '../ui/GlassCard'
 import AnimatedCounter from '../ui/AnimatedCounter'
+import useParallaxDepth from '../../hooks/useParallaxDepth'
+import personalInfo from '../../config/personalInfo'
 
 const About = () => {
-  const highlights = [
-    'AWS Certified',
-    'MERN Stack Specialist',
-    '3+ Years Experience',
-    'Served 2500+ Users Globally',
-  ]
+  const parallaxImage = useParallaxDepth(0.4, 1)
+
+  const highlights = personalInfo.highlights
 
   const achievements = [
     {
@@ -75,14 +74,25 @@ const About = () => {
           className="relative"
         >
           <div className="relative glass-card p-2 group">
-            {/* Photo Placeholder */}
+            {/* Professional Photo */}
             <div className="relative aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20">
-              <div className="absolute inset-0 flex items-center justify-center">
+              <img
+                src={personalInfo.photo.url}
+                alt={personalInfo.photo.alt}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  // Fallback to initials if image fails to load
+                  e.target.style.display = 'none'
+                  const fallback = e.target.parentElement.querySelector('.photo-fallback')
+                  if (fallback) fallback.style.display = 'flex'
+                }}
+              />
+              <div className="photo-fallback absolute inset-0 flex items-center justify-center" style={{ display: 'none' }}>
                 <div className="text-center">
                   <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                    <span className="text-4xl font-bold text-white">NF</span>
+                    <span className="text-4xl font-bold text-white">{personalInfo.initials}</span>
                   </div>
-                  <p className="text-text-secondary text-sm">Developer Photo</p>
+                  <p className="text-text-secondary text-sm">{personalInfo.name}</p>
                 </div>
               </div>
             </div>
@@ -104,13 +114,10 @@ const About = () => {
         >
           <div>
             <h3 className="text-3xl font-bold text-text-primary mb-4">
-              Full Stack JavaScript Developer
+              {personalInfo.title}
             </h3>
             <p className="text-lg text-text-secondary leading-relaxed mb-6">
-              Passionate full stack developer with expertise in modern web technologies.
-              I specialize in building scalable applications using the MERN stack,
-              with a focus on performance, user experience, and clean code architecture.
-              My goal is to create digital solutions that make a real impact.
+              {personalInfo.bio.long}
             </p>
           </div>
 

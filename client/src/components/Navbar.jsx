@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import useScrollSpy from '../hooks/useScrollSpy'
+import personalInfo from '../config/personalInfo'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -10,7 +11,7 @@ const Navbar = () => {
   const location = useLocation()
   const { scrollY } = useScroll()
 
-  const sectionIds = ['hero', 'about', 'tech-stack', 'experience', 'services', 'testimonials', 'contact']
+  const sectionIds = ['hero', 'about', 'tech-stack', 'experience', 'services', 'contact']
   const activeSection = useScrollSpy(sectionIds, 150)
 
   // Detect scroll position
@@ -77,7 +78,7 @@ const Navbar = () => {
             to="/" 
             className="text-xl font-bold text-gradient font-display"
           >
-            Portfolio
+            {personalInfo.name.split(' ')[0]}
           </Link>
         </motion.div>
 

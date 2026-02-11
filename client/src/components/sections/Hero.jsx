@@ -4,37 +4,22 @@ import Typewriter from '../ui/Typewriter'
 import GlassCard from '../ui/GlassCard'
 import CodeTerminal from '../visual/CodeTerminal'
 import ScrollIndicator from '../ui/ScrollIndicator'
+import MagneticButton from '../ui/MagneticButton'
+import useParallaxDepth from '../../hooks/useParallaxDepth'
+import useScrollVelocity from '../../hooks/useScrollVelocity'
+import { getStaggerConfig } from '../../utils/motionTokens'
+import personalInfo from '../../config/personalInfo'
 
 const Hero = () => {
-  const roles = [
-    'MERN Stack Developer',
-    'React Specialist',
-    'Node.js Engineer',
-    'AWS Certified Developer',
-  ]
+  const roles = personalInfo.roles
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  }
+  const parallaxContent = useParallaxDepth(0.3, 1)
+  const parallaxCards = useParallaxDepth(0.5, 1.2)
+  const scrollVelocity = useScrollVelocity()
+  const stagger = getStaggerConfig()
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    },
-  }
+  const containerVariants = stagger.container
+  const itemVariants = stagger.item
 
   const floatingCardVariants = {
     initial: { opacity: 0, y: 50 },
@@ -71,6 +56,8 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Content */}
           <motion.div
+            ref={parallaxContent.ref}
+            style={parallaxContent.style}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -82,10 +69,10 @@ const Hero = () => {
               className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
             >
               <span className="text-gradient font-display">
-                Full Stack JavaScript
+                {personalInfo.title.split(' ').slice(0, -1).join(' ')}
               </span>
               <br />
-              <span className="text-text-primary">Developer</span>
+              <span className="text-text-primary">{personalInfo.title.split(' ').slice(-1)[0]}</span>
             </motion.h1>
 
             {/* Typewriter Roles */}
@@ -101,9 +88,7 @@ const Hero = () => {
               variants={itemVariants}
               className="text-lg md:text-xl text-text-secondary max-w-xl leading-relaxed"
             >
-              Building modern, scalable web applications with cutting-edge technologies.
-              Passionate about clean code, performance optimization, and creating
-              exceptional user experiences.
+              {personalInfo.bio.short}
             </motion.p>
 
             {/* CTA Buttons */}
@@ -111,27 +96,35 @@ const Hero = () => {
               variants={itemVariants}
               className="flex flex-wrap gap-4"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="glass-button flex items-center gap-2 bg-primary/20 hover:bg-primary/30 border-primary/30"
+              <MagneticButton
+                onClick={() => {
+                  const element = document.getElementById('services')
+                  element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }}
+                className="flex items-center gap-2 bg-primary/20 hover:bg-primary/30 border-primary/30"
               >
                 <FolderKanban className="w-5 h-5" />
                 View Projects
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="glass-button flex items-center gap-2"
+              </MagneticButton>
+              <MagneticButton
+                onClick={() => {
+                  const link = document.createElement('a')
+                  link.href = personalInfo.resume.url
+                  link.download = personalInfo.resume.downloadName
+                  link.click()
+                }}
+                className="flex items-center gap-2"
               >
                 <Download className="w-5 h-5" />
                 Download Resume
-              </motion.button>
+              </MagneticButton>
             </motion.div>
           </motion.div>
 
           {/* Right Side - Floating Cards */}
           <motion.div
+            ref={parallaxCards.ref}
+            style={parallaxCards.style}
             variants={containerVariants}
             initial="hidden"
             animate="visible"

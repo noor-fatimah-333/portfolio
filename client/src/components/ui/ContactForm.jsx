@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Send, CheckCircle2, Loader2 } from 'lucide-react'
 import GlassCard from './GlassCard'
+import MagneticButton from './MagneticButton'
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -72,23 +73,40 @@ const ContactForm = () => {
 
     setIsSubmitting(true)
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    setIsSubmitting(false)
-    setIsSuccess(true)
-
-    // Reset form after success
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        message: '',
-        budget: '',
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+      const response = await fetch(`${apiUrl}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       })
-      setIsSuccess(false)
-    }, 3000)
+
+      const data = await response.json()
+
+      if (data.success) {
+        setIsSuccess(true)
+        // Reset form after success
+        setTimeout(() => {
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            message: '',
+            budget: '',
+          })
+          setIsSuccess(false)
+        }, 3000)
+      } else {
+        setErrors({ submit: data.message || 'Failed to send message' })
+      }
+    } catch (error) {
+      console.error('Contact form error:', error)
+      setErrors({ submit: 'Failed to send message. Please try again later.' })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -132,7 +150,7 @@ const ContactForm = () => {
             className={`w-full px-4 py-3 bg-surface-light/50 border ${
               errors.email ? 'border-red-500' : 'border-glass-border'
             } rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background transition-all`}
-            placeholder="your.email@company.com"
+            placeholder="your.email@example.com"
             aria-required="true"
             aria-invalid={errors.email ? 'true' : 'false'}
             aria-describedby={errors.email ? 'email-error' : undefined}
@@ -218,14 +236,16 @@ const ContactForm = () => {
           )}
         </div>
 
+        {/* Submit Error */}
+        {errors.submit && (
+          <p className="mt-2 text-sm text-red-400 text-center" role="alert">{errors.submit}</p>
+        )}
+
         {/* Submit Button */}
-        <motion.button
+        <MagneticButton
           type="submit"
           disabled={isSubmitting || isSuccess}
-          className="w-full glass-button flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
-          whileHover={!isSubmitting && !isSuccess ? { scale: 1.02 } : {}}
-          whileTap={!isSubmitting && !isSuccess ? { scale: 0.98 } : {}}
-          aria-busy={isSubmitting}
+          className="w-full flex items-center justify-center gap-2"
         >
           <AnimatePresence mode="wait">
             {isSuccess ? (
@@ -263,7 +283,7 @@ const ContactForm = () => {
               </motion.div>
             )}
           </AnimatePresence>
-        </motion.button>
+        </MagneticButton>
       </form>
     </GlassCard>
   )
