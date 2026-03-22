@@ -74,8 +74,13 @@ const ContactForm = () => {
     setIsSubmitting(true)
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
-      const response = await fetch(`${apiUrl}/contact`, {
+      const formId = import.meta.env.VITE_FORMSPREE_FORM_ID
+      if (!formId) {
+        setErrors({ submit: 'Contact form is not configured. Please add VITE_FORMSPREE_FORM_ID to your environment.' })
+        return
+      }
+
+      const response = await fetch(`https://formspree.io/f/${formId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +90,7 @@ const ContactForm = () => {
 
       const data = await response.json()
 
-      if (data.success) {
+      if (response.ok) {
         setIsSuccess(true)
         // Reset form after success
         setTimeout(() => {
@@ -99,7 +104,7 @@ const ContactForm = () => {
           setIsSuccess(false)
         }, 3000)
       } else {
-        setErrors({ submit: data.message || 'Failed to send message' })
+        setErrors({ submit: data.error || data.message || 'Failed to send message' })
       }
     } catch (error) {
       console.error('Contact form error:', error)

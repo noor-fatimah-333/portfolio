@@ -1,59 +1,53 @@
-# MERN Glass Portfolio
+# Glass Portfolio
 
-A production-ready full stack developer portfolio built with the MERN stack (MongoDB, Express, React, Node.js) featuring a modern glassmorphism design.
+A modern developer portfolio built with React and Vite, featuring a glassmorphism design. Contact form submissions are handled by [Formspree](https://formspree.io) — no backend or database required.
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js (v18 or higher)
-- MongoDB (local or Atlas)
 
 ### Installation
 
-1. Install all dependencies:
+1. Install dependencies:
 ```bash
-npm run install:all
+cd client && npm install
 ```
 
-2. Set up environment variables:
-   - Copy `server/.env.example` to `server/.env` and configure MongoDB connection
-   - Copy `client/.env.example` to `client/.env` if needed
+2. Set up the contact form (Formspree):
+   - Go to [formspree.io](https://formspree.io) and create a free account
+   - Create a new form — you'll get a form ID (e.g. `xyzabc` from `https://formspree.io/f/xyzabc`)
+   - Copy `client/.env.example` to `client/.env` and add your form ID:
+   ```bash
+   VITE_FORMSPREE_FORM_ID=your_form_id_here
+   ```
 
-3. Start development servers:
+3. Start the dev server:
 ```bash
-npm run dev
+cd client && npm run dev
 ```
 
-This will start both frontend (http://localhost:5173) and backend (http://localhost:5000) concurrently.
+Open http://localhost:5173
 
-## 📁 Project Structure
+## 📦 Deployment (Vercel)
 
-```
-mern-glass-portfolio/
-├── client/          # React frontend (Vite)
-├── server/          # Node.js + Express backend
-└── package.json     # Root package.json with scripts
-```
+1. Set **Root Directory** to `client`
+2. Add environment variable: `VITE_FORMSPREE_FORM_ID` = your Formspree form ID
+3. Deploy — no backend needed
 
 ## 🛠️ Tech Stack
 
-### Frontend
 - React 18
 - Vite
 - React Router
 - Tailwind CSS
 - Framer Motion
 - Lucide React
-
-### Backend
-- Node.js
-- Express
-- MongoDB
-- Mongoose
+- Formspree (contact form)
 
 ## 📝 Scripts
 
-- `npm run dev` - Run both frontend and backend
-- `npm run client` - Run frontend only
-- `npm run server` - Run backend only
-- `npm run install:all` - Install dependencies for all packages
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run install:all` - Install dependencies

@@ -1,24 +1,19 @@
 {
-  "name": "mern-glass-portfolio",
+  "name": "glass-portfolio",
   "version": "1.0.0",
-  "description": "Production-ready MERN stack developer portfolio with glassmorphism design",
+  "description": "A modern developer portfolio with React, Vite, and glassmorphism design",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "client": "cd client && npm run dev",
-    "server": "cd server && npm run dev",
-    "install:all": "npm install && cd client && npm install && cd ../server && npm install"
+    "dev": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "preview": "cd client && npm run preview",
+    "install:all": "cd client && npm install"
   },
   "keywords": [
-    "mern",
     "portfolio",
     "react",
-    "express",
-    "mongodb"
+    "vite",
+    "glassmorphism"
   ],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^8.2.2"
-  }
+  "license": "ISC"
 }
