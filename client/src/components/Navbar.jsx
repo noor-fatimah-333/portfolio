@@ -80,7 +80,7 @@ const Navbar = () => {
             to="/" 
             className="text-xl font-bold text-gradient font-display"
           >
-            {personalInfo.name.split(' ')[0]}
+            {personalInfo.name}
           </Link>
         </motion.div>
 

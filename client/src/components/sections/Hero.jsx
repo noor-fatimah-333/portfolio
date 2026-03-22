@@ -98,7 +98,7 @@ const Hero = () => {
             >
               <MagneticButton
                 onClick={() => {
-                  const element = document.getElementById('services')
+                  const element = document.getElementById('projects')
                   element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
                 }}
                 className="flex items-center gap-2 bg-primary/20 hover:bg-primary/30 border-primary/30"

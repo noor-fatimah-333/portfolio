@@ -47,7 +47,7 @@ const Footer = () => {
             <div className="flex items-center gap-2">
               <Code className="w-6 h-6 text-primary" />
               <h3 className="text-lg font-bold text-gradient font-display">
-                {personalInfo.name.split(' ')[0]}
+                {personalInfo.name}
               </h3>
             </div>
             <p className="text-text-secondary text-sm leading-relaxed max-w-xs">

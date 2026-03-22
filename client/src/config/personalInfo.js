@@ -17,7 +17,7 @@ export const personalInfo = {
   },
   
   // Contact
-  email: 'noorfatima0993@gmail.com', // Update with your real email
+  email: 'noorfatimah0993@gmail.com', // Update with your real email
   phone: '', // Optional
   
   // Social Links

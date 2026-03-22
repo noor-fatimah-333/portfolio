@@ -134,6 +134,8 @@ const EmailButtonWithMagnetic = () => {
         ref={magnetic.ref}
         style={magnetic.style}
         href={`mailto:${personalInfo.email}`}
+        target="_blank"
+        rel="noopener noreferrer"
         className="flex items-center gap-2 px-6 py-3 glass-button focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
