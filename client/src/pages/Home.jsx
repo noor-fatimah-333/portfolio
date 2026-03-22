@@ -7,6 +7,7 @@ import FloatingStats from '../components/visual/FloatingStats'
 const About = lazy(() => import('../components/sections/About'))
 const TechStack = lazy(() => import('../components/sections/TechStack'))
 const Experience = lazy(() => import('../components/sections/Experience'))
+const Projects = lazy(() => import('../components/sections/Projects'))
 const Services = lazy(() => import('../components/sections/Services'))
 const Contact = lazy(() => import('../components/sections/Contact'))
 
@@ -40,6 +41,11 @@ const Home = () => {
       {/* Experience Section */}
       <Suspense fallback={<LoadingFallback />}>
         <Experience />
+      </Suspense>
+
+      {/* Projects Section */}
+      <Suspense fallback={<LoadingFallback />}>
+        <Projects />
       </Suspense>
 
       {/* Services Section */}

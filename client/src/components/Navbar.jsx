@@ -11,7 +11,7 @@ const Navbar = () => {
   const location = useLocation()
   const { scrollY } = useScroll()
 
-  const sectionIds = ['hero', 'about', 'tech-stack', 'experience', 'services', 'contact']
+  const sectionIds = ['hero', 'about', 'tech-stack', 'experience', 'projects', 'services', 'contact']
   const activeSection = useScrollSpy(sectionIds, 150)
 
   // Detect scroll position
@@ -29,6 +29,7 @@ const Navbar = () => {
     { name: 'About', path: '/#about', id: 'about' },
     { name: 'Tech Stack', path: '/#tech-stack', id: 'tech-stack' },
     { name: 'Experience', path: '/#experience', id: 'experience' },
+    { name: 'Projects', path: '/#projects', id: 'projects' },
     { name: 'Services', path: '/#services', id: 'services' },
     { name: 'Contact', path: '/#contact', id: 'contact' },
   ]
