@@ -30,11 +30,11 @@ const SkillCard = ({ icon: Icon, name, percentage, color = 'primary' }) => {
       </div>
 
       {/* Progress Bar */}
-      <div className="h-2 bg-surface-light rounded-full overflow-hidden">
+      <div className="h-2 w-full bg-surface-light rounded-full overflow-hidden">
         <motion.div
-          className={`h-full ${colorClasses[color]} rounded-full`}
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${percentage}%` } : { width: 0 }}
+          className={`h-full w-full ${colorClasses[color]} rounded-full origin-left`}
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: percentage / 100 } : { scaleX: 0 }}
           transition={{ duration: 1.5, delay: 0.2, ease: 'easeOut' }}
         />
       </div>
