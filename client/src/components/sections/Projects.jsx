@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Section from '../ui/Section'
 import ProjectCard from '../ui/ProjectCard'
 import FeaturedProject from '../ui/FeaturedProject'
@@ -78,8 +78,20 @@ const allProjects = [
 
 const Projects = () => {
   const [featuredId, setFeaturedId] = useState('bvc')
+  const isInitialMount = useRef(true)
 
   const featuredProject = allProjects.find((p) => p.id === featuredId)
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
+    const el = document.getElementById('projects')
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }, [featuredId])
   const cardProjects = allProjects.filter((p) => p.id !== featuredId)
 
   return (

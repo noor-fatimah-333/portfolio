@@ -98,7 +98,7 @@ const Navbar = () => {
                 <a
                   href={item.path}
                   onClick={(e) => handleSmoothScroll(e, item.path)}
-                  className={`relative text-sm font-medium transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background rounded px-2 py-1 ${
+                  className={`nav-link relative text-sm font-medium transition-colors duration-300 focus:outline-none pb-1 ${
                     isActive
                       ? 'text-primary'
                       : 'text-text-secondary hover:text-text-primary'
@@ -107,11 +107,9 @@ const Navbar = () => {
                 >
                   {item.name}
                   {isActive && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
-                      initial={false}
-                      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                    <span
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                      aria-hidden
                     />
                   )}
                 </a>
