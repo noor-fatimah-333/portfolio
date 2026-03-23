@@ -59,17 +59,29 @@ const Contact = () => {
               <p className="text-text-secondary text-sm mb-4">
                 Book a time slot that works for you. Let's discuss your project and how I can help.
               </p>
-              <div className="bg-surface-light/50 border border-glass-border rounded-lg p-8 flex items-center justify-center min-h-[300px]">
-                <div className="text-center">
-                  <Calendar className="w-12 h-12 text-primary mx-auto mb-4 opacity-50" />
-                  <p className="text-text-secondary text-sm">
-                    Calendly embed placeholder
-                  </p>
-                  <p className="text-text-muted text-xs mt-2">
-                    Replace with your Calendly embed code
-                  </p>
+              {personalInfo.calendly ? (
+                <div className="bg-surface-light/30 border border-glass-border rounded-lg overflow-hidden min-h-[500px]">
+                  <iframe
+                    src={personalInfo.calendly}
+                    width="100%"
+                    height="500"
+                    frameBorder="0"
+                    title="Schedule a call"
+                    className="w-full"
+                  />
                 </div>
-              </div>
+              ) : (
+                <a
+                  href="https://calendly.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-surface-light/50 border border-glass-border rounded-lg p-8 text-center hover:border-primary/50 transition-colors group"
+                >
+                  <Calendar className="w-12 h-12 text-primary mx-auto mb-4 opacity-50 group-hover:opacity-75 transition-opacity" />
+                  <p className="text-text-secondary text-sm">Set up Calendly to let visitors book a call</p>
+                  <p className="text-text-muted text-xs mt-2">Free at calendly.com</p>
+                </a>
+              )}
             </GlassCard>
           </motion.div>
 

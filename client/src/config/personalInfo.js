@@ -19,6 +19,7 @@ export const personalInfo = {
   // Contact
   email: 'noorfatimah0993@gmail.com', // Update with your real email
   phone: '', // Optional
+  calendly: 'https://calendly.com/noorfatimah0993',
   
   // Social Links
   social: {

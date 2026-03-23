@@ -48,7 +48,7 @@ const About = () => {
 
   return (
     <Section id="about" title="About Me" subtitle="Get to Know Me">
-      <div className="max-w-3xl mb-16">
+      <div className="w-full mb-16">
         <motion.div
           variants={contentVariants}
           initial="hidden"

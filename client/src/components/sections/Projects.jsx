@@ -37,6 +37,7 @@ const allProjects = [
       'DocuSign',
     ],
     screenshots: [
+      '/projects/bvc/bvc-feature-photo.png',
       '/projects/bvc/bvc-dashboard.png',
       '/projects/bvc/bvc-assessments.png',
       '/projects/bvc/bvc-values-management.png',
