@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { BarChart3, Users, Globe, CheckCircle2, Monitor, X } from 'lucide-react'
+import { BarChart3, Users, Globe, CheckCircle2, Monitor, X, Github, ExternalLink } from 'lucide-react'
 import GlassCard from './GlassCard'
 
 const FeaturedProject = ({
@@ -14,8 +14,12 @@ const FeaturedProject = ({
   achievements,
   technologies,
   screenshots = [],
+  image, // Single image for simple projects
+  githubUrl,
+  liveUrl,
 }) => {
   const [lightboxIndex, setLightboxIndex] = useState(null)
+  const displayScreenshots = screenshots?.length > 0 ? screenshots : (image ? [image] : [])
 
   const metricIcons = {
     users: Users,
@@ -71,10 +75,27 @@ const FeaturedProject = ({
             )}
           </div>
 
-          {/* Description */}
-          <p className="text-text-secondary leading-relaxed mb-8 max-w-3xl">
+          {/* Description - full width */}
+          <p className="text-text-secondary leading-relaxed mb-8 w-full">
             {description}
           </p>
+
+          {/* Single featured image (for simple projects without screenshot gallery) */}
+          {image && screenshots.length === 0 && (
+            <div className="mb-8">
+              <motion.button
+                type="button"
+                onClick={() => setLightboxIndex(0)}
+                className="w-full relative min-h-[280px] rounded-xl overflow-hidden bg-surface-light/20 border border-glass-border cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-primary/50 flex items-center justify-center"
+              >
+                <img
+                  src={image}
+                  alt={title}
+                  className="max-w-full max-h-[60vh] w-auto h-auto object-contain hover:scale-[1.02] transition-transform duration-300"
+                />
+              </motion.button>
+            </div>
+          )}
 
           {/* Impact Metrics */}
           {metrics && metrics.length > 0 && (
@@ -143,7 +164,7 @@ const FeaturedProject = ({
                 </h4>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {screenshots.map((shot, index) =>
+                {displayScreenshots.map((shot, index) =>
                   typeof shot === 'string' ? (
                     <motion.button
                       key={index}
@@ -171,39 +192,67 @@ const FeaturedProject = ({
                   )
                 )}
               </div>
+            </div>
+          )}
 
-              {/* Fullscreen Lightbox - rendered via portal to avoid parent overflow clipping */}
-              {createPortal(
-                <AnimatePresence>
-                  {lightboxIndex !== null && typeof screenshots[lightboxIndex] === 'string' && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      onClick={() => setLightboxIndex(null)}
-                      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/98 p-6 cursor-zoom-out"
-                    >
-                      <button
-                        onClick={() => setLightboxIndex(null)}
-                        className="absolute top-6 right-6 p-3 rounded-full bg-white/20 hover:bg-white/30 transition-colors z-10"
-                        aria-label="Close"
-                      >
-                        <X className="w-8 h-8 text-white" />
-                      </button>
-                      <motion.img
-                        initial={{ scale: 0.95, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.95, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        src={screenshots[lightboxIndex]}
-                        alt={`${title} screenshot ${lightboxIndex + 1}`}
-                        onClick={(e) => e.stopPropagation()}
-                        className="max-w-[min(95vw,1400px)] max-h-[85vh] w-auto h-auto object-contain shadow-2xl cursor-default"
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>,
-                document.body
+          {/* Fullscreen Lightbox - works for both gallery and single image */}
+          {createPortal(
+            <AnimatePresence>
+              {lightboxIndex !== null && displayScreenshots[lightboxIndex] && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setLightboxIndex(null)}
+                  className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/98 p-6 cursor-zoom-out"
+                >
+                  <button
+                    onClick={() => setLightboxIndex(null)}
+                    className="absolute top-6 right-6 p-3 rounded-full bg-white/20 hover:bg-white/30 transition-colors z-10"
+                    aria-label="Close"
+                  >
+                    <X className="w-8 h-8 text-white" />
+                  </button>
+                  <motion.img
+                    initial={{ scale: 0.95, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.95, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    src={typeof displayScreenshots[lightboxIndex] === 'string' ? displayScreenshots[lightboxIndex] : image}
+                    alt={`${title} screenshot ${lightboxIndex + 1}`}
+                    onClick={(e) => e.stopPropagation()}
+                    className="max-w-[min(95vw,1400px)] max-h-[85vh] w-auto h-auto object-contain shadow-2xl cursor-default"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>,
+            document.body
+          )}
+
+          {/* External links (for simple projects) */}
+          {(githubUrl || liveUrl) && (
+            <div className="flex gap-3 mb-8">
+              {githubUrl && (
+                <a
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+                >
+                  <Github className="w-5 h-5" />
+                  View on GitHub
+                </a>
+              )}
+              {liveUrl && (
+                <a
+                  href={liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+                >
+                  <ExternalLink className="w-5 h-5" />
+                  Live Demo
+                </a>
               )}
             </div>
           )}

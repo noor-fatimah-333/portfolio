@@ -10,7 +10,8 @@ const ProjectCard = ({
   githubUrl, 
   liveUrl, 
   index,
-  featured = false 
+  featured = false,
+  onClick,
 }) => {
   return (
     <motion.div
@@ -21,7 +22,12 @@ const ProjectCard = ({
       className="group"
     >
       <GlassCard
-        className="relative h-full overflow-hidden"
+        onClick={onClick}
+        role={onClick ? 'button' : undefined}
+        tabIndex={onClick ? 0 : undefined}
+        onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick() : undefined}
+        aria-label={onClick ? `View ${title} details` : undefined}
+        className={`relative h-full overflow-hidden ${onClick ? 'cursor-pointer' : ''}`}
         hover
       >
         {/* Project Image */}
@@ -46,8 +52,8 @@ const ProjectCard = ({
           {/* Overlay on hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
-          {/* Action buttons */}
-          <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {/* Action buttons - stopPropagation so card onClick doesn't fire */}
+          <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" onClick={(e) => e.stopPropagation()}>
             {githubUrl && (
               <motion.a
                 href={githubUrl}
