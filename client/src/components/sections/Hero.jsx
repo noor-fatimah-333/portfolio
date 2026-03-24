@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Download, FolderKanban, Code, Rocket, Sparkles } from 'lucide-react'
+import { Download, Eye, FolderKanban, Code, Rocket, Sparkles } from 'lucide-react'
 import Typewriter from '../ui/Typewriter'
 import GlassCard from '../ui/GlassCard'
 import CodeTerminal from '../visual/CodeTerminal'
@@ -105,6 +105,15 @@ const Hero = () => {
               >
                 <FolderKanban className="w-5 h-5" />
                 View Projects
+              </MagneticButton>
+              <MagneticButton
+                onClick={() => {
+                  window.open(personalInfo.resume.url, '_blank', 'noopener,noreferrer')
+                }}
+                className="flex items-center gap-2 bg-primary/20 hover:bg-primary/30 border-primary/30"
+              >
+                <Eye className="w-5 h-5" />
+                View Resume
               </MagneticButton>
               <MagneticButton
                 onClick={() => {

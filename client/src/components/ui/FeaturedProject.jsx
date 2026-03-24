@@ -27,6 +27,15 @@ const FeaturedProject = ({
     orgs: BarChart3,
   }
 
+  const metricGridClass =
+    !metrics?.length || metrics.length === 1
+      ? 'grid-cols-1'
+      : metrics.length === 2
+        ? 'grid-cols-1 sm:grid-cols-2'
+        : metrics.length === 3
+          ? 'grid-cols-1 sm:grid-cols-3'
+          : 'grid-cols-2 md:grid-cols-4'
+
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') setLightboxIndex(null)
@@ -99,7 +108,7 @@ const FeaturedProject = ({
 
           {/* Impact Metrics */}
           {metrics && metrics.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className={`grid ${metricGridClass} gap-4 mb-8 w-full`}>
               {metrics.map((metric, index) => {
                 const Icon = metricIcons[metric.icon] || BarChart3
                 return (
@@ -109,7 +118,7 @@ const FeaturedProject = ({
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex items-center gap-3 p-4 rounded-lg bg-surface-light/20 border border-glass-border"
+                    className="flex items-center gap-3 p-4 rounded-lg bg-surface-light/20 border border-glass-border min-w-0 w-full"
                   >
                     <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
                       <Icon className="w-5 h-5 text-primary" />
