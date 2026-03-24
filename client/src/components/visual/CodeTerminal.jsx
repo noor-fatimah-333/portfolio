@@ -8,7 +8,7 @@ const CodeTerminal = () => {
 
   const codeLines = [
     'const developer = {',
-    '  name: "Full Stack Developer",',
+    '  name: "Software Engineer",',
     '  skills: ["React", "Node.js", "MongoDB"],',
     '  experience: "3+ years",',
     '  passion: "Building amazing apps"',

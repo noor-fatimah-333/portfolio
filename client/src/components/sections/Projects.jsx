@@ -12,7 +12,7 @@ const allProjects = [
     description:
       'Barrett Values Centre is a global pioneer in values-based leadership and cultural transformation, trusted by 6,000+ organizations worldwide. Their platform uses the Seven Levels of Consciousness® model to assess organizational culture, individual values, and leadership development. I served as a core developer on this enterprise SaaS platform.',
     role:
-      'Full Stack Developer — Built features end-to-end across the consultant dashboard, assessment tools, reporting, and integrations. Collaborated with product and QA teams in an agile environment.',
+      'Full Stack Engineer — Built features end-to-end across the consultant dashboard, assessment tools, reporting, and integrations. Collaborated with product and QA teams in an agile environment.',
     metrics: [
       { icon: 'users', value: '2500+', label: 'Consultants' },
       { icon: 'globe', value: '80+', label: 'Countries' },

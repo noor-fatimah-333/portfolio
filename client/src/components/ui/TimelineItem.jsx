@@ -43,36 +43,37 @@ const TimelineItem = ({
       {/* Timeline Dot */}
       <div className="absolute left-0 lg:left-1/2 top-6 lg:top-1/2 transform -translate-x-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background z-10 shadow-lg shadow-primary/50 flex-shrink-0" />
 
-      {/* Content Card */}
-      <div className={`w-full lg:w-[45%] ${isLeft ? 'lg:mr-auto lg:text-right' : 'lg:ml-auto lg:text-left'} pl-8 lg:pl-0`}>
+      {/* Content Card — text always LTR / left-aligned inside the card */}
+      <div
+        className={`w-full lg:w-[45%] text-left ${isLeft ? 'lg:mr-auto' : 'lg:ml-auto'} pl-8 lg:pl-0`}
+      >
         <GlassCard
           className="cursor-pointer"
           onClick={() => setIsExpanded(!isExpanded)}
           hover
         >
-          {/* Header */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 mb-4">
-            <div className={`flex-1 ${isLeft ? 'lg:order-2 lg:text-right' : ''}`}>
+          {/* Header: role/company left, dates right (same on every card) */}
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+            <div className="flex-1 min-w-0">
               <h3 className="text-xl font-bold text-text-primary mb-1">{role}</h3>
               <div className="flex items-center gap-2 text-text-secondary text-sm flex-wrap">
-                <Building2 className="w-4 h-4" />
+                <Building2 className="w-4 h-4 shrink-0" />
                 <span>{company}</span>
-                <span className="hidden sm:inline">•</span>
                 <div className="flex items-center gap-1">
-                  <MapPin className="w-4 h-4" />
+                  <MapPin className="w-4 h-4 shrink-0" />
                   <span>{location}</span>
                 </div>
               </div>
             </div>
-            <div className={`flex items-center gap-2 text-text-secondary text-sm ${isLeft ? 'lg:order-1 lg:justify-end' : ''}`}>
-              <Calendar className="w-4 h-4" />
+            <div className="flex items-center gap-2 text-text-secondary text-sm shrink-0 sm:pt-0.5">
+              <Calendar className="w-4 h-4 shrink-0" />
               <span>{startDate} – {endDate}</span>
             </div>
           </div>
 
           {/* Metrics */}
           {metrics && metrics.length > 0 && (
-            <div className={`flex flex-wrap gap-2 mb-4 ${isLeft ? 'lg:justify-end' : ''}`}>
+            <div className="flex flex-wrap gap-2 mb-4">
               {metrics.map((metric, idx) => (
                 <span
                   key={idx}
@@ -85,7 +86,7 @@ const TimelineItem = ({
           )}
 
           {/* Technologies */}
-          <div className={`flex flex-wrap gap-2 mb-4 ${isLeft ? 'lg:justify-end' : ''}`}>
+          <div className="flex flex-wrap gap-2 mb-4">
             {technologies.map((tech, idx) => (
               <span
                 key={idx}
@@ -108,13 +109,17 @@ const TimelineItem = ({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.1 }}
-                className={`space-y-2 mt-4 pt-4 border-t border-glass-border ${isLeft ? 'lg:text-right' : ''}`}
+                className="space-y-2 mt-4 pt-4 border-t border-glass-border text-left"
               >
                 {responsibilities.map((responsibility, idx) => (
-                  <li key={idx} className="text-text-secondary text-sm flex items-start gap-2">
-                    {!isLeft && <span className="text-primary mt-1">•</span>}
-                    <span className="flex-1">{responsibility}</span>
-                    {isLeft && <span className="text-primary mt-1">•</span>}
+                  <li
+                    key={idx}
+                    className="text-text-secondary text-sm flex items-start gap-2 text-left"
+                  >
+                    <span className="text-primary mt-1 shrink-0" aria-hidden>
+                      •
+                    </span>
+                    <span className="min-w-0 flex-1">{responsibility}</span>
                   </li>
                 ))}
               </motion.ul>
@@ -122,7 +127,7 @@ const TimelineItem = ({
           </motion.div>
 
           {/* Expand/Collapse Button */}
-          <div className={`flex items-center gap-2 mt-4 text-primary text-sm font-medium ${isLeft ? 'lg:justify-end' : ''}`}>
+          <div className="flex items-center gap-2 mt-4 text-primary text-sm font-medium">
             <span>{isExpanded ? 'Show Less' : 'Show Details'}</span>
             <motion.div
               animate={{ rotate: isExpanded ? 180 : 0 }}

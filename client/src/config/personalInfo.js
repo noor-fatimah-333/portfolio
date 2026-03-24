@@ -7,7 +7,7 @@ export const personalInfo = {
   firstName: 'Noor',
   lastName: 'Fatima',
   initials: 'NF',
-  title: 'Full Stack JavaScript Developer',
+  title: 'Software Engineer',
   location: 'Lahore, Pakistan',
   
   // Bio
@@ -39,7 +39,7 @@ export const personalInfo = {
   // Professional Photo
   photo: {
     url: '/profile-photo.jpg', // Place your photo in client/public/
-    alt: 'Noor Fatima - Full Stack Developer',
+    alt: 'Noor Fatima - Software Engineer',
   },
   
   // Skills & Roles (for typewriter effect)

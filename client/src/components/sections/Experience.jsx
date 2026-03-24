@@ -9,7 +9,7 @@ const Experience = () => {
 
   const experiences = [
     {
-      role: 'Software Developer',
+      role: 'Software Engineer',
       company: 'Code District',
       location: 'Lahore, Pakistan',
       startDate: 'June 2024',
@@ -39,7 +39,7 @@ const Experience = () => {
       ],
     },
     {
-      role: 'Software Developer Intern',
+      role: 'Software Engineer Intern',
       company: 'Techloyce',
       location: 'Lahore, Pakistan',
       startDate: 'June 2023',
