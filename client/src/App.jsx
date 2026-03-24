@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { ThemeProvider } from './context/ThemeContext'
-import MainLayout from './layouts/MainLayout'
-import Home from './pages/Home'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeContext";
+import MainLayout from "./layouts/MainLayout";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         </MainLayout>
       </Router>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;

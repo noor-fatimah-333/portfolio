@@ -1,28 +1,45 @@
-import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, Calendar, MessageSquare } from 'lucide-react'
-import Section from '../ui/Section'
-import ContactForm from '../ui/ContactForm'
-import GlassCard from '../ui/GlassCard'
-import useMagnetic from '../../hooks/useMagnetic'
-import personalInfo from '../../config/personalInfo'
+import { motion } from "framer-motion";
+import { Mail, Github, Linkedin, Calendar, MessageSquare } from "lucide-react";
+import Section from "../ui/Section";
+import ContactForm from "../ui/ContactForm";
+import GlassCard from "../ui/GlassCard";
+import useMagnetic from "../../hooks/useMagnetic";
+import personalInfo from "../../config/personalInfo";
 
 const Contact = () => {
   const getSocialDisplayText = (url, type) => {
-    if (!url) return ''
+    if (!url) return "";
     try {
-      const urlObj = new URL(url)
-      if (type === 'email') return personalInfo.email
-      return urlObj.hostname + urlObj.pathname
+      const urlObj = new URL(url);
+      if (type === "email") return personalInfo.email;
+      return urlObj.hostname + urlObj.pathname;
     } catch {
-      return url.replace(/^https?:\/\//, '').replace(/^mailto:/, '')
+      return url.replace(/^https?:\/\//, "").replace(/^mailto:/, "");
     }
-  }
+  };
 
   const socialLinks = [
-    { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email', text: personalInfo.email },
-    { icon: Github, href: personalInfo.social.github, label: 'GitHub', text: getSocialDisplayText(personalInfo.social.github, 'github') },
-    { icon: Linkedin, href: personalInfo.social.linkedin, label: 'LinkedIn', text: getSocialDisplayText(personalInfo.social.linkedin, 'linkedin') },
-  ].filter(link => link.href && link.href !== 'mailto:' && link.href !== 'https://')
+    {
+      icon: Mail,
+      href: `mailto:${personalInfo.email}`,
+      label: "Email",
+      text: personalInfo.email,
+    },
+    {
+      icon: Github,
+      href: personalInfo.social.github,
+      label: "GitHub",
+      text: getSocialDisplayText(personalInfo.social.github, "github"),
+    },
+    {
+      icon: Linkedin,
+      href: personalInfo.social.linkedin,
+      label: "LinkedIn",
+      text: getSocialDisplayText(personalInfo.social.linkedin, "linkedin"),
+    },
+  ].filter(
+    (link) => link.href && link.href !== "mailto:" && link.href !== "https://",
+  );
 
   return (
     <Section
@@ -32,7 +49,6 @@ const Contact = () => {
       className="bg-surface-dark/20"
     >
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-        {/* Left Side - Contact Form */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -41,10 +57,7 @@ const Contact = () => {
         >
           <ContactForm />
         </motion.div>
-
-        {/* Right Side - Calendly & Social Links */}
         <div className="space-y-6">
-          {/* Calendly Embed Placeholder */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -54,10 +67,13 @@ const Contact = () => {
             <GlassCard className="h-full">
               <div className="flex items-center gap-3 mb-4">
                 <Calendar className="w-6 h-6 text-primary" />
-                <h3 className="text-xl font-bold text-text-primary">Schedule a Call</h3>
+                <h3 className="text-xl font-bold text-text-primary">
+                  Schedule a Call
+                </h3>
               </div>
               <p className="text-text-secondary text-sm mb-4">
-                Book a time slot that works for you. Let's discuss your project and how I can help.
+                Book a time slot that works for you. Let's discuss your project
+                and how I can help.
               </p>
               {personalInfo.calendly ? (
                 <div className="bg-surface-light/30 border border-glass-border rounded-lg overflow-hidden min-h-[500px]">
@@ -78,14 +94,16 @@ const Contact = () => {
                   className="block bg-surface-light/50 border border-glass-border rounded-lg p-8 text-center hover:border-primary/50 transition-colors group"
                 >
                   <Calendar className="w-12 h-12 text-primary mx-auto mb-4 opacity-50 group-hover:opacity-75 transition-opacity" />
-                  <p className="text-text-secondary text-sm">Set up Calendly to let visitors book a call</p>
-                  <p className="text-text-muted text-xs mt-2">Free at calendly.com</p>
+                  <p className="text-text-secondary text-sm">
+                    Set up Calendly to let visitors book a call
+                  </p>
+                  <p className="text-text-muted text-xs mt-2">
+                    Free at calendly.com
+                  </p>
                 </a>
               )}
             </GlassCard>
           </motion.div>
-
-          {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -95,11 +113,13 @@ const Contact = () => {
             <GlassCard>
               <div className="flex items-center gap-3 mb-4">
                 <MessageSquare className="w-6 h-6 text-primary" />
-                <h3 className="text-xl font-bold text-text-primary">Connect With Me</h3>
+                <h3 className="text-xl font-bold text-text-primary">
+                  Connect With Me
+                </h3>
               </div>
               <div className="space-y-3">
                 {socialLinks.map((link, index) => {
-                  const Icon = link.icon
+                  const Icon = link.icon;
                   return (
                     <motion.a
                       key={index}
@@ -114,26 +134,28 @@ const Contact = () => {
                         <Icon className="w-5 h-5 text-primary" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-text-primary font-medium text-sm">{link.label}</p>
-                        <p className="text-text-secondary text-xs">{link.text}</p>
+                        <p className="text-text-primary font-medium text-sm">
+                          {link.label}
+                        </p>
+                        <p className="text-text-secondary text-xs">
+                          {link.text}
+                        </p>
                       </div>
                     </motion.a>
-                  )
+                  );
                 })}
               </div>
             </GlassCard>
           </motion.div>
-
-          {/* Email Icon Row */}
           <EmailButtonWithMagnetic />
         </div>
       </div>
     </Section>
-  )
-}
+  );
+};
 
 const EmailButtonWithMagnetic = () => {
-  const magnetic = useMagnetic(0.25, 120)
+  const magnetic = useMagnetic(0.25, 120);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -156,7 +178,7 @@ const EmailButtonWithMagnetic = () => {
         <span className="font-semibold">Quick Email</span>
       </motion.a>
     </motion.div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

@@ -1,25 +1,32 @@
-import { motion } from 'framer-motion'
-import { Download, Eye, FolderKanban, Code, Rocket, Sparkles } from 'lucide-react'
-import Typewriter from '../ui/Typewriter'
-import GlassCard from '../ui/GlassCard'
-import CodeTerminal from '../visual/CodeTerminal'
-import ScrollIndicator from '../ui/ScrollIndicator'
-import MagneticButton from '../ui/MagneticButton'
-import useParallaxDepth from '../../hooks/useParallaxDepth'
-import useScrollVelocity from '../../hooks/useScrollVelocity'
-import { getStaggerConfig } from '../../utils/motionTokens'
-import personalInfo from '../../config/personalInfo'
+import { motion } from "framer-motion";
+import {
+  Download,
+  Eye,
+  FolderKanban,
+  Code,
+  Rocket,
+  Sparkles,
+} from "lucide-react";
+import Typewriter from "../ui/Typewriter";
+import GlassCard from "../ui/GlassCard";
+import CodeTerminal from "../visual/CodeTerminal";
+import ScrollIndicator from "../ui/ScrollIndicator";
+import MagneticButton from "../ui/MagneticButton";
+import useParallaxDepth from "../../hooks/useParallaxDepth";
+import useScrollVelocity from "../../hooks/useScrollVelocity";
+import { getStaggerConfig } from "../../utils/motionTokens";
+import personalInfo from "../../config/personalInfo";
 
 const Hero = () => {
-  const roles = personalInfo.roles
+  const roles = personalInfo.roles;
 
-  const parallaxContent = useParallaxDepth(0.3, 1)
-  const parallaxCards = useParallaxDepth(0.5, 1.2)
-  const scrollVelocity = useScrollVelocity()
-  const stagger = getStaggerConfig()
+  const parallaxContent = useParallaxDepth(0.3, 1);
+  const parallaxCards = useParallaxDepth(0.5, 1.2);
+  const scrollVelocity = useScrollVelocity();
+  const stagger = getStaggerConfig();
 
-  const containerVariants = stagger.container
-  const itemVariants = stagger.item
+  const containerVariants = stagger.container;
+  const itemVariants = stagger.item;
 
   const floatingCardVariants = {
     initial: { opacity: 0, y: 50 },
@@ -34,27 +41,29 @@ const Hero = () => {
       y: -10,
       scale: 1.02,
       transition: {
-        type: 'spring',
+        type: "spring",
         stiffness: 300,
         damping: 20,
       },
     },
-  }
+  };
 
   const floatingAnimation = {
     y: [0, -15, 0],
     transition: {
       duration: 4,
       repeat: Infinity,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     },
-  }
+  };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 pb-32 overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center pt-20 pb-32 overflow-hidden"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Content */}
           <motion.div
             ref={parallaxContent.ref}
             style={parallaxContent.style}
@@ -63,43 +72,46 @@ const Hero = () => {
             animate="visible"
             className="space-y-8"
           >
-            {/* Headline */}
             <motion.h1
               variants={itemVariants}
               className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
             >
               <span className="text-gradient font-display">
-                {personalInfo.title.split(' ').slice(0, -1).join(' ')}
+                {personalInfo.title.split(" ").slice(0, -1).join(" ")}
               </span>
               <br />
-              <span className="text-text-primary">{personalInfo.title.split(' ').slice(-1)[0]}</span>
+              <span className="text-text-primary">
+                {personalInfo.title.split(" ").slice(-1)[0]}
+              </span>
             </motion.h1>
-
-            {/* Typewriter Roles */}
             <motion.div
               variants={itemVariants}
               className="text-2xl md:text-3xl font-semibold text-text-secondary h-10"
             >
-              <Typewriter words={roles} speed={100} deleteSpeed={50} delay={2000} />
+              <Typewriter
+                words={roles}
+                speed={100}
+                deleteSpeed={50}
+                delay={2000}
+              />
             </motion.div>
-
-            {/* Description */}
             <motion.p
               variants={itemVariants}
               className="text-lg md:text-xl text-text-secondary max-w-xl leading-relaxed"
             >
               {personalInfo.bio.short}
             </motion.p>
-
-            {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
               className="flex flex-wrap gap-4"
             >
               <MagneticButton
                 onClick={() => {
-                  const element = document.getElementById('projects')
-                  element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  const element = document.getElementById("projects");
+                  element?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
                 }}
                 className="flex items-center gap-2 bg-primary/20 hover:bg-primary/30 border-primary/30"
               >
@@ -108,7 +120,11 @@ const Hero = () => {
               </MagneticButton>
               <MagneticButton
                 onClick={() => {
-                  window.open(personalInfo.resume.url, '_blank', 'noopener,noreferrer')
+                  window.open(
+                    personalInfo.resume.url,
+                    "_blank",
+                    "noopener,noreferrer",
+                  );
                 }}
                 className="flex items-center gap-2 bg-primary/20 hover:bg-primary/30 border-primary/30"
               >
@@ -117,10 +133,10 @@ const Hero = () => {
               </MagneticButton>
               <MagneticButton
                 onClick={() => {
-                  const link = document.createElement('a')
-                  link.href = personalInfo.resume.url
-                  link.download = personalInfo.resume.downloadName
-                  link.click()
+                  const link = document.createElement("a");
+                  link.href = personalInfo.resume.url;
+                  link.download = personalInfo.resume.downloadName;
+                  link.click();
                 }}
                 className="flex items-center gap-2"
               >
@@ -129,8 +145,6 @@ const Hero = () => {
               </MagneticButton>
             </motion.div>
           </motion.div>
-
-          {/* Right Side - Floating Cards */}
           <motion.div
             ref={parallaxCards.ref}
             style={parallaxCards.style}
@@ -139,7 +153,6 @@ const Hero = () => {
             animate="visible"
             className="relative h-[600px] lg:h-[700px]"
           >
-            {/* Floating Glass Cards */}
             <motion.div
               variants={floatingCardVariants}
               animate={floatingAnimation}
@@ -147,9 +160,12 @@ const Hero = () => {
             >
               <GlassCard hover>
                 <Code className="w-10 h-10 mb-4 text-primary" />
-                <h3 className="text-xl font-semibold mb-2 text-text-primary">Clean Code</h3>
+                <h3 className="text-xl font-semibold mb-2 text-text-primary">
+                  Clean Code
+                </h3>
                 <p className="text-text-secondary text-sm">
-                  Writing maintainable and scalable code following best practices
+                  Writing maintainable and scalable code following best
+                  practices
                 </p>
               </GlassCard>
             </motion.div>
@@ -167,9 +183,12 @@ const Hero = () => {
             >
               <GlassCard hover>
                 <Rocket className="w-10 h-10 mb-4 text-secondary" />
-                <h3 className="text-xl font-semibold mb-2 text-text-primary">Performance</h3>
+                <h3 className="text-xl font-semibold mb-2 text-text-primary">
+                  Performance
+                </h3>
                 <p className="text-text-secondary text-sm">
-                  Optimized applications for speed and exceptional user experience
+                  Optimized applications for speed and exceptional user
+                  experience
                 </p>
               </GlassCard>
             </motion.div>
@@ -187,14 +206,14 @@ const Hero = () => {
             >
               <GlassCard hover>
                 <Sparkles className="w-10 h-10 mb-4 text-primary" />
-                <h3 className="text-xl font-semibold mb-2 text-text-primary">Innovation</h3>
+                <h3 className="text-xl font-semibold mb-2 text-text-primary">
+                  Innovation
+                </h3>
                 <p className="text-text-secondary text-sm">
                   Exploring new technologies and creative solutions
                 </p>
               </GlassCard>
             </motion.div>
-
-            {/* Code Terminal */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -206,11 +225,9 @@ const Hero = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
       <ScrollIndicator targetId="about" />
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

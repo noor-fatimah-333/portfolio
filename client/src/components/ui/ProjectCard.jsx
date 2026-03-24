@@ -1,14 +1,14 @@
-import { motion } from 'framer-motion'
-import { ExternalLink, Github } from 'lucide-react'
-import GlassCard from './GlassCard'
+import { motion } from "framer-motion";
+import { ExternalLink, Github } from "lucide-react";
+import GlassCard from "./GlassCard";
 
-const ProjectCard = ({ 
-  title, 
-  description, 
-  image, 
-  technologies, 
-  githubUrl, 
-  liveUrl, 
+const ProjectCard = ({
+  title,
+  description,
+  image,
+  technologies,
+  githubUrl,
+  liveUrl,
   index,
   featured = false,
   onClick,
@@ -23,14 +23,13 @@ const ProjectCard = ({
     >
       <GlassCard
         onClick={onClick}
-        role={onClick ? 'button' : undefined}
+        role={onClick ? "button" : undefined}
         tabIndex={onClick ? 0 : undefined}
-        onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick() : undefined}
+        onKeyDown={onClick ? (e) => e.key === "Enter" && onClick() : undefined}
         aria-label={onClick ? `View ${title} details` : undefined}
-        className={`relative h-full overflow-hidden ${onClick ? 'cursor-pointer' : ''}`}
+        className={`relative h-full overflow-hidden ${onClick ? "cursor-pointer" : ""}`}
         hover
       >
-        {/* Project Image */}
         <div className="relative w-full h-48 md:h-64 lg:h-72 mb-4 rounded-lg overflow-hidden bg-surface-light/20 flex items-center justify-center">
           {image ? (
             <img
@@ -48,12 +47,11 @@ const ProjectCard = ({
               </div>
             </div>
           )}
-          
-          {/* Overlay on hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          
-          {/* Action buttons - stopPropagation so card onClick doesn't fire */}
-          <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
             {githubUrl && (
               <motion.a
                 href={githubUrl}
@@ -82,20 +80,13 @@ const ProjectCard = ({
             )}
           </div>
         </div>
-
-        {/* Content */}
         <div className="space-y-3">
-          {/* Title */}
           <h3 className="text-xl font-bold text-text-primary group-hover:text-primary transition-colors">
             {title}
           </h3>
-
-          {/* Description */}
           <p className="text-text-secondary text-sm leading-relaxed line-clamp-3">
             {description}
           </p>
-
-          {/* Technologies */}
           {technologies && technologies.length > 0 && (
             <div className="flex flex-wrap gap-2 pt-2">
               {technologies.map((tech, idx) => (
@@ -111,7 +102,7 @@ const ProjectCard = ({
         </div>
       </GlassCard>
     </motion.div>
-  )
-}
+  );
+};
 
-export default ProjectCard
+export default ProjectCard;

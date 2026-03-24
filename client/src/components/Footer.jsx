@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Code, Heart } from 'lucide-react'
-import useMagnetic from '../hooks/useMagnetic'
-import personalInfo from '../config/personalInfo'
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, Code, Heart } from "lucide-react";
+import useMagnetic from "../hooks/useMagnetic";
+import personalInfo from "../config/personalInfo";
 
 const SocialIconWithMagnetic = ({ Icon, href, label }) => {
-  const magnetic = useMagnetic(0.2, 80)
+  const magnetic = useMagnetic(0.2, 80);
   return (
     <motion.a
       ref={magnetic.ref}
@@ -19,18 +19,20 @@ const SocialIconWithMagnetic = ({ Icon, href, label }) => {
     >
       <Icon className="w-5 h-5" />
     </motion.a>
-  )
-}
+  );
+};
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: personalInfo.social.github, label: 'GitHub' },
-    { icon: Linkedin, href: personalInfo.social.linkedin, label: 'LinkedIn' },
-    { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' },
-    ...(personalInfo.social.codepen ? [{ icon: Code, href: personalInfo.social.codepen, label: 'CodePen' }] : []),
-  ].filter(Boolean)
+    { icon: Github, href: personalInfo.social.github, label: "GitHub" },
+    { icon: Linkedin, href: personalInfo.social.linkedin, label: "LinkedIn" },
+    { icon: Mail, href: `mailto:${personalInfo.email}`, label: "Email" },
+    ...(personalInfo.social.codepen
+      ? [{ icon: Code, href: personalInfo.social.codepen, label: "CodePen" }]
+      : []),
+  ].filter(Boolean);
 
   return (
     <motion.footer
@@ -42,7 +44,6 @@ const Footer = () => {
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Code className="w-6 h-6 text-primary" />
@@ -54,8 +55,6 @@ const Footer = () => {
               {personalInfo.bio.short}
             </p>
           </div>
-
-          {/* Quick Links */}
           <div className="space-y-4">
             <h4 className="text-text-primary font-semibold text-sm uppercase tracking-wider">
               Quick Links
@@ -87,15 +86,13 @@ const Footer = () => {
               </a>
             </nav>
           </div>
-
-          {/* Social Links */}
           <div className="space-y-4">
             <h4 className="text-text-primary font-semibold text-sm uppercase tracking-wider">
               Connect
             </h4>
             <div className="flex items-center gap-4">
               {socialLinks.map((link, index) => {
-                const Icon = link.icon
+                const Icon = link.icon;
                 return (
                   <SocialIconWithMagnetic
                     key={index}
@@ -103,7 +100,7 @@ const Footer = () => {
                     href={link.href}
                     label={link.label}
                   />
-                )
+                );
               })}
             </div>
             <a
@@ -115,19 +112,18 @@ const Footer = () => {
             </a>
           </div>
         </div>
-
-        {/* Bottom Bar */}
         <div className="pt-8 border-t border-glass-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-text-muted text-xs flex items-center gap-2">
             © {currentYear} {personalInfo.name}. All rights reserved.
           </p>
           <p className="text-text-muted text-xs flex items-center gap-2">
-            Built with <Heart className="w-3 h-3 text-primary fill-primary" /> using React & Express
+            Built with <Heart className="w-3 h-3 text-primary fill-primary" />{" "}
+            using React & Express
           </p>
         </div>
       </div>
     </motion.footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

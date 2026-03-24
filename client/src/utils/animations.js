@@ -1,10 +1,9 @@
-// Global Animation Timing System
 export const animationTimings = {
   fast: 0.2,
   normal: 0.3,
   slow: 0.5,
   slower: 0.8,
-}
+};
 
 export const animationEasings = {
   ease: [0.4, 0, 0.2, 1],
@@ -14,7 +13,7 @@ export const animationEasings = {
   anticipate: [0.36, 0, 0.66, -0.56],
   backIn: [0.36, 0, 0.66, -0.56],
   backOut: [0.34, 1.56, 0.64, 1],
-}
+};
 
 export const staggerConfig = {
   container: {
@@ -38,7 +37,7 @@ export const staggerConfig = {
       },
     },
   },
-}
+};
 
 export const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -48,7 +47,7 @@ export const fadeInUp = {
     duration: animationTimings.normal,
     ease: animationEasings.easeOut,
   },
-}
+};
 
 export const fadeIn = {
   initial: { opacity: 0 },
@@ -58,7 +57,7 @@ export const fadeIn = {
     duration: animationTimings.normal,
     ease: animationEasings.easeOut,
   },
-}
+};
 
 export const scaleIn = {
   initial: { opacity: 0, scale: 0.9 },
@@ -68,4 +67,4 @@ export const scaleIn = {
     duration: animationTimings.normal,
     ease: animationEasings.easeOut,
   },
-}
+};

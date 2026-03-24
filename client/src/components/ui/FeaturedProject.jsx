@@ -1,8 +1,17 @@
-import { useState, useEffect } from 'react'
-import { createPortal } from 'react-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { BarChart3, Users, Globe, CheckCircle2, Monitor, X, Github, ExternalLink } from 'lucide-react'
-import GlassCard from './GlassCard'
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  BarChart3,
+  Users,
+  Globe,
+  CheckCircle2,
+  Monitor,
+  X,
+  Github,
+  ExternalLink,
+} from "lucide-react";
+import GlassCard from "./GlassCard";
 
 const FeaturedProject = ({
   logo,
@@ -14,46 +23,47 @@ const FeaturedProject = ({
   achievements,
   technologies,
   screenshots = [],
-  image, // Single image for simple projects
+  image,
   githubUrl,
   liveUrl,
 }) => {
-  const [lightboxIndex, setLightboxIndex] = useState(null)
-  const displayScreenshots = screenshots?.length > 0 ? screenshots : (image ? [image] : [])
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const displayScreenshots =
+    screenshots?.length > 0 ? screenshots : image ? [image] : [];
 
   const metricIcons = {
     users: Users,
     globe: Globe,
     orgs: BarChart3,
-  }
+  };
 
   const metricGridClass =
     !metrics?.length || metrics.length === 1
-      ? 'grid-cols-1'
+      ? "grid-cols-1"
       : metrics.length === 2
-        ? 'grid-cols-1 sm:grid-cols-2'
+        ? "grid-cols-1 sm:grid-cols-2"
         : metrics.length === 3
-          ? 'grid-cols-1 sm:grid-cols-3'
-          : 'grid-cols-2 md:grid-cols-4'
+          ? "grid-cols-1 sm:grid-cols-3"
+          : "grid-cols-2 md:grid-cols-4";
 
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape') setLightboxIndex(null)
-    }
-    window.addEventListener('keydown', handleEscape)
-    return () => window.removeEventListener('keydown', handleEscape)
-  }, [])
+      if (e.key === "Escape") setLightboxIndex(null);
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, []);
 
   useEffect(() => {
     if (lightboxIndex !== null) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = ''
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = ''
-    }
-  }, [lightboxIndex])
+      document.body.style.overflow = "";
+    };
+  }, [lightboxIndex]);
 
   return (
     <motion.div
@@ -65,7 +75,6 @@ const FeaturedProject = ({
     >
       <GlassCard hover={false} className="overflow-hidden">
         <div className="p-6 md:p-8 lg:p-10">
-          {/* Header: Logo centered above title */}
           <div className="text-center mb-8">
             {logo && (
               <div className="flex justify-center mb-4">
@@ -83,13 +92,9 @@ const FeaturedProject = ({
               <p className="text-text-secondary text-lg">{tagline}</p>
             )}
           </div>
-
-          {/* Description - full width */}
           <p className="text-text-secondary leading-relaxed mb-8 w-full">
             {description}
           </p>
-
-          {/* Single featured image (for simple projects without screenshot gallery) */}
           {image && screenshots.length === 0 && (
             <div className="mb-8">
               <motion.button
@@ -105,12 +110,10 @@ const FeaturedProject = ({
               </motion.button>
             </div>
           )}
-
-          {/* Impact Metrics */}
           {metrics && metrics.length > 0 && (
             <div className={`grid ${metricGridClass} gap-4 mb-8 w-full`}>
               {metrics.map((metric, index) => {
-                const Icon = metricIcons[metric.icon] || BarChart3
+                const Icon = metricIcons[metric.icon] || BarChart3;
                 return (
                   <motion.div
                     key={index}
@@ -124,16 +127,16 @@ const FeaturedProject = ({
                       <Icon className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="text-xl font-bold text-text-primary">{metric.value}</p>
+                      <p className="text-xl font-bold text-text-primary">
+                        {metric.value}
+                      </p>
                       <p className="text-xs text-text-muted">{metric.label}</p>
                     </div>
                   </motion.div>
-                )
+                );
               })}
             </div>
           )}
-
-          {/* Role & Achievements - Two columns on larger screens */}
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             {role && (
               <div>
@@ -162,8 +165,6 @@ const FeaturedProject = ({
               </div>
             )}
           </div>
-
-          {/* Screenshot Gallery */}
           {screenshots.length > 0 && (
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-4">
@@ -174,7 +175,7 @@ const FeaturedProject = ({
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {displayScreenshots.map((shot, index) =>
-                  typeof shot === 'string' ? (
+                  typeof shot === "string" ? (
                     <motion.button
                       key={index}
                       type="button"
@@ -198,13 +199,11 @@ const FeaturedProject = ({
                         {shot?.placeholder || `Screenshot ${index + 1}`}
                       </div>
                     </div>
-                  )
+                  ),
                 )}
               </div>
             </div>
           )}
-
-          {/* Fullscreen Lightbox - works for both gallery and single image */}
           {createPortal(
             <AnimatePresence>
               {lightboxIndex !== null && displayScreenshots[lightboxIndex] && (
@@ -227,7 +226,11 @@ const FeaturedProject = ({
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.95, opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    src={typeof displayScreenshots[lightboxIndex] === 'string' ? displayScreenshots[lightboxIndex] : image}
+                    src={
+                      typeof displayScreenshots[lightboxIndex] === "string"
+                        ? displayScreenshots[lightboxIndex]
+                        : image
+                    }
                     alt={`${title} screenshot ${lightboxIndex + 1}`}
                     onClick={(e) => e.stopPropagation()}
                     className="max-w-[min(95vw,1400px)] max-h-[85vh] w-auto h-auto object-contain shadow-2xl cursor-default"
@@ -235,10 +238,8 @@ const FeaturedProject = ({
                 </motion.div>
               )}
             </AnimatePresence>,
-            document.body
+            document.body,
           )}
-
-          {/* External links (for simple projects) */}
           {(githubUrl || liveUrl) && (
             <div className="flex gap-3 mb-8">
               {githubUrl && (
@@ -265,8 +266,6 @@ const FeaturedProject = ({
               )}
             </div>
           )}
-
-          {/* Technologies */}
           {technologies && technologies.length > 0 && (
             <div>
               <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
@@ -287,7 +286,7 @@ const FeaturedProject = ({
         </div>
       </GlassCard>
     </motion.div>
-  )
-}
+  );
+};
 
-export default FeaturedProject
+export default FeaturedProject;

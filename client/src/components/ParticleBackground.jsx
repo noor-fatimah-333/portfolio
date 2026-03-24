@@ -1,16 +1,8 @@
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
-/**
- * ParticleBackground Component
- * Placeholder for future particle system integration
- */
 const ParticleBackground = () => {
-  // Placeholder for particle system
-  // Can be replaced with react-particles, three.js, or custom implementation
-  
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      {/* Animated gradient orbs */}
       <motion.div
         className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
         animate={{
@@ -51,7 +43,7 @@ const ParticleBackground = () => {
         }}
       />
     </div>
-  )
-}
+  );
+};
 
-export default ParticleBackground
+export default ParticleBackground;

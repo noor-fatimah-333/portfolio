@@ -1,15 +1,15 @@
-import { motion } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
+import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
-const ScrollIndicator = ({ targetId = 'about' }) => {
+const ScrollIndicator = ({ targetId = "about" }) => {
   const scrollToSection = () => {
-    const element = document.getElementById(targetId)
+    const element = document.getElementById(targetId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })
+      window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <motion.button
@@ -27,7 +27,7 @@ const ScrollIndicator = ({ targetId = 'about' }) => {
         transition={{
           duration: 1.5,
           repeat: Infinity,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
         className="flex flex-col items-center gap-2 text-text-secondary hover:text-primary transition-colors"
       >
@@ -35,7 +35,7 @@ const ScrollIndicator = ({ targetId = 'about' }) => {
         <ChevronDown className="w-6 h-6" />
       </motion.div>
     </motion.button>
-  )
-}
+  );
+};
 
-export default ScrollIndicator
+export default ScrollIndicator;

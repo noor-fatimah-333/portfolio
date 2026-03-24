@@ -1,38 +1,40 @@
-import { motion } from 'framer-motion'
-import { CheckCircle2, Code2, Zap, Layers, Users } from 'lucide-react'
-import Section from '../ui/Section'
-import GlassCard from '../ui/GlassCard'
-import personalInfo from '../../config/personalInfo'
+import { motion } from "framer-motion";
+import { CheckCircle2, Code2, Zap, Layers, Users } from "lucide-react";
+import Section from "../ui/Section";
+import GlassCard from "../ui/GlassCard";
+import personalInfo from "../../config/personalInfo";
 
 const About = () => {
-  const highlights = personalInfo.highlights
+  const highlights = personalInfo.highlights;
 
   const achievements = [
     {
       icon: Code2,
-      title: 'Clean Architecture Focus',
-      description: 'Writing maintainable and scalable code following SOLID principles',
-      color: 'text-primary',
+      title: "Clean Architecture Focus",
+      description:
+        "Writing maintainable and scalable code following SOLID principles",
+      color: "text-primary",
     },
     {
       icon: Zap,
-      title: 'Performance Optimization',
-      description: 'Optimizing applications for speed and exceptional user experience',
-      color: 'text-secondary',
+      title: "Performance Optimization",
+      description:
+        "Optimizing applications for speed and exceptional user experience",
+      color: "text-secondary",
     },
     {
       icon: Layers,
-      title: 'Scalable Systems Design',
-      description: 'Building systems that grow with your business needs',
-      color: 'text-primary',
+      title: "Scalable Systems Design",
+      description: "Building systems that grow with your business needs",
+      color: "text-primary",
     },
     {
       icon: Users,
-      title: 'UX Driven Development',
-      description: 'Creating intuitive interfaces that users love',
-      color: 'text-secondary',
+      title: "UX Driven Development",
+      description: "Creating intuitive interfaces that users love",
+      color: "text-secondary",
     },
-  ]
+  ];
 
   const contentVariants = {
     hidden: { opacity: 0, x: -30 },
@@ -41,10 +43,10 @@ const About = () => {
       x: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: "easeOut",
       },
     },
-  }
+  };
 
   return (
     <Section id="about" title="About Me" subtitle="Get to Know Me">
@@ -64,8 +66,6 @@ const About = () => {
               {personalInfo.bio.long}
             </p>
           </div>
-
-          {/* Highlights */}
           <div className="space-y-3">
             {highlights.map((highlight, index) => (
               <motion.div
@@ -83,11 +83,9 @@ const About = () => {
           </div>
         </motion.div>
       </div>
-
-      {/* Achievement Cards */}
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {achievements.map((achievement, index) => {
-          const Icon = achievement.icon
+          const Icon = achievement.icon;
           return (
             <motion.div
               key={index}
@@ -106,11 +104,11 @@ const About = () => {
                 </p>
               </GlassCard>
             </motion.div>
-          )
+          );
         })}
       </div>
     </Section>
-  )
-}
+  );
+};
 
-export default About
+export default About;

@@ -1,43 +1,70 @@
-import { useState, useEffect, useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { Users, Globe, Award, Code } from 'lucide-react'
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Users, Globe, Award, Code } from "lucide-react";
 
 const FloatingStats = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const stats = [
-    { icon: Users, value: 2500, suffix: '+', label: 'Users', color: 'text-primary' },
-    { icon: Globe, value: 80, suffix: '+', label: 'Countries', color: 'text-secondary' },
-    { icon: Award, value: 3, suffix: '+', label: 'Years Experience', color: 'text-primary' },
-    { icon: Code, value: 100, suffix: '+', label: 'Projects', color: 'text-secondary' },
-  ]
+    {
+      icon: Users,
+      value: 2500,
+      suffix: "+",
+      label: "Users",
+      color: "text-primary",
+    },
+    {
+      icon: Globe,
+      value: 80,
+      suffix: "+",
+      label: "Countries",
+      color: "text-secondary",
+    },
+    {
+      icon: Award,
+      value: 3,
+      suffix: "+",
+      label: "Years Experience",
+      color: "text-primary",
+    },
+    {
+      icon: Code,
+      value: 100,
+      suffix: "+",
+      label: "Projects",
+      color: "text-secondary",
+    },
+  ];
 
   const Counter = ({ end, suffix, duration = 2 }) => {
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
-      if (!isInView) return
+      if (!isInView) return;
 
-      let startTime = null
+      let startTime = null;
       const animate = (currentTime) => {
-        if (!startTime) startTime = currentTime
-        const progress = Math.min((currentTime - startTime) / (duration * 1000), 1)
-        setCount(Math.floor(progress * end))
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min(
+          (currentTime - startTime) / (duration * 1000),
+          1,
+        );
+        setCount(Math.floor(progress * end));
         if (progress < 1) {
-          requestAnimationFrame(animate)
+          requestAnimationFrame(animate);
         }
-      }
-      requestAnimationFrame(animate)
-    }, [isInView, end, duration])
+      };
+      requestAnimationFrame(animate);
+    }, [isInView, end, duration]);
 
     return (
       <span>
         {count}
         {suffix}
       </span>
-    )
-  }
+    );
+  };
 
   return (
     <motion.div
@@ -48,7 +75,7 @@ const FloatingStats = () => {
       className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
     >
       {stats.map((stat, index) => {
-        const Icon = stat.icon
+        const Icon = stat.icon;
         return (
           <motion.div
             key={index}
@@ -64,10 +91,10 @@ const FloatingStats = () => {
             </div>
             <div className="text-sm text-text-secondary">{stat.label}</div>
           </motion.div>
-        )
+        );
       })}
     </motion.div>
-  )
-}
+  );
+};
 
-export default FloatingStats
+export default FloatingStats;
