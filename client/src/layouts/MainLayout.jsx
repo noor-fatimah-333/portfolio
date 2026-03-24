@@ -1,4 +1,3 @@
-import { lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
@@ -8,17 +7,22 @@ import ScrollProgress from "../components/ui/ScrollProgress";
 import ParticleBackground from "../components/ParticleBackground";
 import Particles from "../components/visual/Particles";
 import { Moon, Sun } from "lucide-react";
-import { fadeInUp } from "../utils/animations";
+const mainPageTransition = {
+  type: "tween",
+  ease: [0.4, 0, 0.2, 1],
+  duration: 0.35,
+};
+
+const mainFade = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: mainPageTransition,
+};
 
 const MainLayout = ({ children }) => {
   const location = useLocation();
   const { isDark, toggleTheme } = useTheme();
-
-  const pageTransition = {
-    type: "tween",
-    ease: [0.4, 0, 0.2, 1],
-    duration: 0.4,
-  };
 
   return (
     <div className="min-h-screen relative">
@@ -37,10 +41,10 @@ const MainLayout = ({ children }) => {
         <motion.main
           id="main-content"
           key={location.pathname}
-          initial={fadeInUp.initial}
-          animate={fadeInUp.animate}
-          exit={fadeInUp.exit}
-          transition={pageTransition}
+          initial={mainFade.initial}
+          animate={mainFade.animate}
+          exit={mainFade.exit}
+          transition={mainFade.transition}
           className="page-container relative z-10 min-h-[calc(100vh-200px)]"
         >
           {children}

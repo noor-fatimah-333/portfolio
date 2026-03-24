@@ -103,34 +103,36 @@ const Hero = () => {
             </motion.p>
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap gap-4"
+              className="flex w-full max-w-lg flex-col gap-3 sm:max-w-none sm:flex-row sm:flex-wrap"
             >
-              <MagneticButton
-                onClick={() => {
-                  const element = document.getElementById("projects");
-                  element?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
-                }}
-                className="flex items-center gap-2 bg-primary/20 hover:bg-primary/30 border-primary/30"
-              >
-                <FolderKanban className="w-5 h-5" />
-                View Projects
-              </MagneticButton>
-              <MagneticButton
-                onClick={() => {
-                  window.open(
-                    personalInfo.resume.url,
-                    "_blank",
-                    "noopener,noreferrer",
-                  );
-                }}
-                className="flex items-center gap-2 bg-primary/20 hover:bg-primary/30 border-primary/30"
-              >
-                <Eye className="w-5 h-5" />
-                View Resume
-              </MagneticButton>
+              <div className="grid w-full grid-cols-2 gap-3 sm:contents">
+                <MagneticButton
+                  onClick={() => {
+                    const element = document.getElementById("projects");
+                    element?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }}
+                  className="flex min-h-[44px] w-full items-center justify-center gap-2 bg-primary/20 hover:bg-primary/30 border-primary/30 sm:w-auto sm:min-w-0"
+                >
+                  <FolderKanban className="h-5 w-5 shrink-0" />
+                  <span className="truncate">View Projects</span>
+                </MagneticButton>
+                <MagneticButton
+                  onClick={() => {
+                    window.open(
+                      personalInfo.resume.url,
+                      "_blank",
+                      "noopener,noreferrer",
+                    );
+                  }}
+                  className="flex min-h-[44px] w-full items-center justify-center gap-2 bg-primary/20 hover:bg-primary/30 border-primary/30 sm:w-auto sm:min-w-0"
+                >
+                  <Eye className="h-5 w-5 shrink-0" />
+                  <span className="truncate">View Resume</span>
+                </MagneticButton>
+              </div>
               <MagneticButton
                 onClick={() => {
                   const link = document.createElement("a");
@@ -138,10 +140,10 @@ const Hero = () => {
                   link.download = personalInfo.resume.downloadName;
                   link.click();
                 }}
-                className="flex items-center gap-2"
+                className="flex min-h-[44px] w-full items-center justify-center gap-2 sm:w-auto"
               >
-                <Download className="w-5 h-5" />
-                Download Resume
+                <Download className="h-5 w-5 shrink-0" />
+                <span>Download Resume</span>
               </MagneticButton>
             </motion.div>
           </motion.div>

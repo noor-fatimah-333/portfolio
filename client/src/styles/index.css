@@ -12,6 +12,11 @@
     scroll-behavior: smooth;
   }
 
+  section[id],
+  #hero {
+    scroll-margin-top: 6rem;
+  }
+
   body {
     @apply bg-background text-text-primary min-h-screen font-sans;
     -webkit-font-smoothing: antialiased;
