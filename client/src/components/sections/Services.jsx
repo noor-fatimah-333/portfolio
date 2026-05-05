@@ -1,4 +1,4 @@
-import { Code, Cloud, Zap, Layers, Shield, Server } from "lucide-react";
+import { Code, Cloud, Zap, Shield } from "lucide-react";
 import Section from "../ui/Section";
 import ServiceCard from "../ui/ServiceCard";
 
@@ -6,79 +6,49 @@ const Services = () => {
   const services = [
     {
       icon: Code,
-      title: "Full Stack Development",
-      description:
-        "End-to-end web application development using modern JavaScript frameworks and technologies.",
+      title: "Full Stack Product Development",
+      description: "",
       skills: [
-        "React & Next.js Frontend",
-        "Node.js & Express Backend",
-        "MongoDB & PostgreSQL",
-        "RESTful & GraphQL APIs",
+        "React.js / Next.js frontends with TypeScript",
+        "Node.js / Express / NestJS backend APIs",
+        "PostgreSQL & GraphQL data layers",
+        "Third-party integrations (QuickBooks, DocuSign, MS365)",
       ],
       color: "primary",
-    },
-    {
-      icon: Cloud,
-      title: "SaaS Architecture",
-      description:
-        "Design and build scalable Software-as-a-Service platforms that grow with your business.",
-      skills: [
-        "Multi-tenant Architecture",
-        "Microservices Design",
-        "Cloud Infrastructure",
-        "Scalable Systems",
-      ],
-      color: "secondary",
     },
     {
       icon: Zap,
-      title: "API & Integrations",
-      description:
-        "Seamless third-party integrations and custom API development for enhanced functionality.",
+      title: "AI-Augmented Engineering",
+      description: "",
       skills: [
-        "REST API Development",
-        "Third-party Integrations",
-        "QuickBooks & DocuSign",
-        "Webhook Implementation",
-      ],
-      color: "primary",
-    },
-    {
-      icon: Server,
-      title: "Performance Optimization",
-      description:
-        "Optimize applications for speed, efficiency, and exceptional user experience.",
-      skills: [
-        "Query Optimization",
-        "Database Tuning",
-        "Code Optimization",
-        "Caching Strategies",
+        "Daily use of Claude Code, Cursor AI & Codex",
+        "MCP context system design for multi-repo codebases",
+        "Claude API integrations and agent skill development",
+        "Faster delivery with measurable AI autonomy benchmarks",
       ],
       color: "secondary",
     },
     {
-      icon: Layers,
-      title: "Enterprise Systems",
-      description:
-        "Build robust enterprise-grade applications with advanced features and security.",
+      icon: Cloud,
+      title: "Cloud & DevOps",
+      description: "",
       skills: [
-        "Admin Impersonation",
-        "Audit Logging",
-        "Role-Based Access Control",
-        "Automated Workflows",
+        "AWS (EC2, RDS, S3, CodeDeploy, CodeArtifact)",
+        "Docker containerisation basics",
+        "CI/CD pipeline setup with Jenkins and GitHub Actions",
+        "AWS Developer Associate certification in progress",
       ],
       color: "primary",
     },
     {
       icon: Shield,
-      title: "Secure Authentication Systems",
-      description:
-        "Implement secure authentication and authorization systems for your applications.",
+      title: "Enterprise Security & Integrations",
+      description: "",
       skills: [
-        "JWT Authentication",
-        "Keycloak Integration",
-        "OAuth & SSO",
-        "Security Best Practices",
+        "JWT authentication, RBAC, session management",
+        "OAuth flows and SSO with Keycloak",
+        "Audit logging and admin impersonation controls",
+        "Microsoft 365 Mail API and webhook integrations",
       ],
       color: "secondary",
     },
@@ -87,8 +57,7 @@ const Services = () => {
   return (
     <Section
       id="services"
-      title="Services"
-      subtitle="What I Offer"
+      title="What I Bring to Your Team"
       staggerDelay={0.1}
     >
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

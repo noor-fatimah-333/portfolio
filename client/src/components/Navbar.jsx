@@ -23,6 +23,7 @@ const Navbar = () => {
     "tech-stack",
     "experience",
     "projects",
+    "certifications",
     "services",
     "contact",
   ];
@@ -42,7 +43,8 @@ const Navbar = () => {
     { name: "Tech Stack", path: "/#tech-stack", id: "tech-stack" },
     { name: "Experience", path: "/#experience", id: "experience" },
     { name: "Projects", path: "/#projects", id: "projects" },
-    { name: "Services", path: "/#services", id: "services" },
+    { name: "Certifications", path: "/#certifications", id: "certifications" },
+    { name: "What I Bring", path: "/#services", id: "services" },
     { name: "Contact", path: "/#contact", id: "contact" },
   ];
 

@@ -3,12 +3,12 @@ export const personalInfo = {
   firstName: "Noor",
   lastName: "Fatima",
   initials: "NF",
-  title: "Software Engineer",
+  title: "Full Stack Developer",
   location: "Lahore, Pakistan",
   bio: {
     short:
-      "Passionate full stack developer with expertise in modern web technologies.",
-    long: "Passionate full stack developer with expertise in modern web technologies. I specialize in building scalable applications using the MERN stack, with a focus on performance, user experience, and clean code architecture. My goal is to create digital solutions that make a real impact.",
+      "Full Stack Developer with 3+ years building scalable enterprise SaaS products using React.js, Node.js, PostgreSQL, and GraphQL. I ship production features daily using Claude Code, Cursor AI, and Codex — and design structured MCP context systems for complex multi-service codebases. AWS Certified Cloud Practitioner, currently pursuing AWS Developer Associate.",
+    long: "Full Stack Developer specialising in React.js, Node.js/Express, PostgreSQL, and GraphQL. I build scalable enterprise SaaS systems and work with global stakeholders in Agile teams. I'm deeply practised in AI-augmented development — using Claude Code, Cursor AI, Codex, and Antigravity daily to ship faster and smarter. I also design structured MCP (Model Context Protocol) context systems that give AI agents deep knowledge of multi-service codebases, dramatically improving AI autonomy on real engineering tasks.",
   },
   email: "noorfatimah0993@gmail.com",
   phone: "",
@@ -32,7 +32,7 @@ export const personalInfo = {
     "MERN Stack Developer",
     "React Specialist",
     "Node.js Engineer",
-    "AWS Certified Developer",
+    "AI-Augmented Engineering · AWS Certified",
   ],
   highlights: [
     "AWS Certified",

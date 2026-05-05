@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Code2, Zap, Layers, Users } from "lucide-react";
+import { CheckCircle2, Code2, Zap, Bot, Users } from "lucide-react";
 import Section from "../ui/Section";
 import GlassCard from "../ui/GlassCard";
 import personalInfo from "../../config/personalInfo";
@@ -12,26 +12,26 @@ const About = () => {
       icon: Code2,
       title: "Clean Architecture Focus",
       description:
-        "Writing maintainable and scalable code following SOLID principles",
+        "Microservices, GraphQL APIs, and PostgreSQL query optimisation with CTEs",
       color: "text-primary",
     },
     {
       icon: Zap,
-      title: "Performance Optimization",
+      title: "Performance Optimisation",
       description:
-        "Optimizing applications for speed and exceptional user experience",
+        "Complex data modelling, multi-table joins, Redis caching, and CI/CD pipelines",
       color: "text-secondary",
     },
     {
-      icon: Layers,
-      title: "Scalable Systems Design",
-      description: "Building systems that grow with your business needs",
+      icon: Bot,
+      title: "AI-Augmented Development",
+      description: "Daily use of Claude Code, Cursor AI, Codex, and MCP context engineering",
       color: "text-primary",
     },
     {
       icon: Users,
-      title: "UX Driven Development",
-      description: "Creating intuitive interfaces that users love",
+      title: "Enterprise Integrations",
+      description: "QuickBooks, DocuSign, Keycloak, MS365 Mail API, and OAuth flows",
       color: "text-secondary",
     },
   ];

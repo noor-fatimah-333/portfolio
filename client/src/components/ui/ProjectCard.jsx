@@ -38,14 +38,7 @@ const ProjectCard = ({
               className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10">
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-2 rounded-lg bg-surface-light/30 flex items-center justify-center">
-                  <span className="text-2xl">📸</span>
-                </div>
-                <p className="text-text-muted text-xs">Image placeholder</p>
-              </div>
-            </div>
+            <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10" />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <div

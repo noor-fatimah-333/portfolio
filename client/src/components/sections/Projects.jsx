@@ -10,19 +10,21 @@ const allProjects = [
     title: "Barrett Values Centre",
     tagline: "Organizational Culture Assessment SaaS Platform",
     description:
-      "Barrett Values Centre is a global pioneer in values-based leadership and cultural transformation, trusted by 6,000+ organizations worldwide. Their platform uses the Seven Levels of Consciousness® model to assess organizational culture, individual values, and leadership development. I served as a core developer on this enterprise SaaS platform.",
+      "Core developer on a global SaaS platform serving 2,500+ consultants across 80+ countries and 6,000+ organisations worldwide.",
     role: "Full Stack Engineer — Built features end-to-end across the consultant dashboard, assessment tools, reporting, and integrations. Collaborated with product and QA teams in an agile environment.",
     metrics: [
       { icon: "users", value: "2500+", label: "Consultants" },
       { icon: "globe", value: "80+", label: "Countries" },
-      { icon: "orgs", value: "6000+", label: "Organizations" },
+      { icon: "orgs", value: "6000+", label: "Organisations" },
+      { icon: "orgs", value: "6", label: "Microservices" },
     ],
     achievements: [
-      "Developed 20+ React components with Ant Design — dashboards, data tables, advanced filtering",
-      "Optimized PostgreSQL queries using CTEs and indexing for complex reporting",
-      "Built Node.js/Express microservices — QuickBooks, DocuSign, Keycloak SSO integrations",
-      "Implemented role-based access control and multi-tenant architecture",
-      "Collaborated with stakeholders across time zones in a distributed team",
+      "Built 20+ responsive React.js/Ant Design components with an advanced filtering system (15+ dynamic criteria)",
+      "Optimised PostgreSQL report queries using CTEs and multi-table joins across 10+ tables",
+      "Developed Node.js/Express microservices with QuickBooks, DocuSign, Keycloak, and MS365 Mail API integrations",
+      "Implemented admin impersonation with full audit logging and security controls",
+      "Automated scheduled notifications via cron jobs",
+      "Designed structured AI context system (bvc-context) using Claude Code and MCP",
     ],
     technologies: [
       "React",
@@ -45,6 +47,20 @@ const allProjects = [
       "/projects/bvc/bvc-responses.png",
       "/projects/bvc/bvc-leaders-profile-report.png",
     ],
+  },
+  {
+    id: "bvc-context",
+    title: "bvc-context — AI Context Hub",
+    tagline: "Open Source · AI Engineering",
+    description:
+      "Designed and built bvc-context, a structured AI context hub that equips Claude Code with deep, cross-repo knowledge of the Barrett Values Centre platform's six microservices (React/Umi frontend, Express backend, Hasura/Postgres, two Spring Boot services, and an SQS-driven integration hub). Includes service-specific operational packs, architecture docs, reusable agent skills and slash commands, a two-stage context-economy policy to minimise token sprawl, and an eval suite of 10 scored scenarios to measurably benchmark AI autonomy on real engineering tasks.",
+    metrics: [
+      { icon: "orgs", value: "6", label: "Microservices" },
+      { icon: "users", value: "10", label: "Eval Scenarios" },
+      { icon: "globe", value: "1", label: "Context Economy Policy" },
+    ],
+    image: "/projects/bvc-context/terminal-mockup.svg",
+    technologies: ["Claude Code", "MCP"],
   },
   {
     id: "gamehub",

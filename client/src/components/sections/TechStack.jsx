@@ -9,6 +9,7 @@ import {
   Terminal,
   Layers,
   FileCode,
+  Cpu,
 } from "lucide-react";
 import Section from "../ui/Section";
 import SkillCard from "../ui/SkillCard";
@@ -19,11 +20,15 @@ const TechStack = () => {
       title: "Frontend",
       icon: Code,
       skills: [
-        { name: "React", percentage: 95, icon: Code },
+        { name: "React.js", percentage: 95, icon: Code },
         { name: "Next.js", percentage: 85, icon: Package },
-        { name: "Redux", percentage: 90, icon: Layers },
-        { name: "Tailwind CSS", percentage: 95, icon: FileCode },
         { name: "TypeScript", percentage: 88, icon: Code },
+        { name: "JavaScript", percentage: 95, icon: FileCode },
+        { name: "Redux Toolkit", percentage: 90, icon: Layers },
+        { name: "Ant Design", percentage: 85, icon: Layers },
+        { name: "Chakra UI", percentage: 82, icon: Layers },
+        { name: "Bootstrap", percentage: 88, icon: FileCode },
+        { name: "HTML/CSS", percentage: 95, icon: FileCode },
       ],
     },
     {
@@ -31,21 +36,37 @@ const TechStack = () => {
       icon: Server,
       skills: [
         { name: "Node.js", percentage: 92, icon: Server },
-        { name: "Express", percentage: 90, icon: Server },
+        { name: "Express.js", percentage: 90, icon: Server },
+        { name: "NestJS", percentage: 80, icon: Server },
+        { name: "GraphQL", percentage: 83, icon: Database },
+        { name: "PostgreSQL", percentage: 85, icon: Database },
         { name: "MongoDB", percentage: 88, icon: Database },
+        { name: "Hasura", percentage: 75, icon: Database },
+        { name: "MySQL", percentage: 82, icon: Database },
         { name: "REST APIs", percentage: 93, icon: Terminal },
-        { name: "GraphQL", percentage: 80, icon: Database },
       ],
     },
     {
       title: "Cloud & DevOps",
       icon: Cloud,
       skills: [
-        { name: "AWS", percentage: 85, icon: Cloud },
+        { name: "AWS (EC2, RDS, S3, CodeDeploy)", percentage: 85, icon: Cloud },
         { name: "Docker", percentage: 82, icon: Package },
         { name: "CI/CD", percentage: 80, icon: GitBranch },
         { name: "Git", percentage: 95, icon: GitBranch },
-        { name: "Linux", percentage: 88, icon: Terminal },
+        { name: "GitHub Actions", percentage: 82, icon: GitBranch },
+      ],
+    },
+    {
+      title: "AI & Developer Tools",
+      icon: Cpu,
+      skills: [
+        { name: "Claude Code", percentage: 90, icon: Terminal },
+        { name: "Cursor AI", percentage: 88, icon: Code },
+        { name: "Codex", percentage: 85, icon: Code },
+        { name: "Antigravity", percentage: 80, icon: Terminal },
+        { name: "MCP (Model Context Protocol)", percentage: 82, icon: Layers },
+        { name: "Claude API", percentage: 85, icon: Cpu },
       ],
     },
   ];

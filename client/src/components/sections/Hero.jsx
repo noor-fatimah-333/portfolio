@@ -10,7 +10,6 @@ import {
 import Typewriter from "../ui/Typewriter";
 import GlassCard from "../ui/GlassCard";
 import CodeTerminal from "../visual/CodeTerminal";
-import ScrollIndicator from "../ui/ScrollIndicator";
 import MagneticButton from "../ui/MagneticButton";
 import useParallaxDepth from "../../hooks/useParallaxDepth";
 import useScrollVelocity from "../../hooks/useScrollVelocity";
@@ -227,7 +226,6 @@ const Hero = () => {
           </motion.div>
         </div>
       </div>
-      <ScrollIndicator targetId="about" />
     </section>
   );
 };
