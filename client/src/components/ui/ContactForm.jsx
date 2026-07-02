@@ -18,7 +18,7 @@ const ContactForm = () => {
 
   const budgetOptions = [
     "Select Budget Range",
-    "$5,000 - $10,000",
+    "Under $5,000",
     "$5,000 - $10,000",
     "$10,000 - $25,000",
     "$25,000 - $50,000",
